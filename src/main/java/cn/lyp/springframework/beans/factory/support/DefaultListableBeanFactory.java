@@ -1,6 +1,7 @@
 package cn.lyp.springframework.beans.factory.support;
 
 import cn.lyp.springframework.beans.BeansException;
+import cn.lyp.springframework.beans.factory.ConfigurableListableBeanFactory;
 import cn.lyp.springframework.beans.factory.config.BeanDefinition;
 
 import java.util.HashMap;
@@ -11,17 +12,37 @@ import java.util.Map;
  * @Date: 2025/4/30 11:34
  * @Description:
  */
-public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFactory implements BeanDefinitionRegistry {
+public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFactory implements BeanDefinitionRegistry, ConfigurableListableBeanFactory {
 
     private Map<String, BeanDefinition> beanDefinitionMap = new HashMap<>();
 
-    //将 BeanDefinition 注册进 beanDefinitionMap 容器。
     @Override
     public void registerBeanDefinition(String beanName, BeanDefinition beanDefinition) {
         beanDefinitionMap.put(beanName, beanDefinition);
     }
 
-    //从注册表中获取bean
+    @Override
+    public boolean containsBeanDefinition(String beanName) {
+        return beanDefinitionMap.containsKey(beanName);
+    }
+
+    @Override
+    public <T> Map<String, T> getBeansOfType(Class<T> type) throws BeansException {
+        Map<String, T> result = new HashMap<>();
+        beanDefinitionMap.forEach((beanName, beanDefinition) -> {
+            Class beanClass = beanDefinition.getBeanClass();
+            if (type.isAssignableFrom(beanClass)) {
+                result.put(beanName, (T) getBean(beanName));
+            }
+        });
+        return result;
+    }
+
+    @Override
+    public String[] getBeanDefinitionNames() {
+        return beanDefinitionMap.keySet().toArray(new String[0]);
+    }
+
     @Override
     public BeanDefinition getBeanDefinition(String beanName) throws BeansException {
         BeanDefinition beanDefinition = beanDefinitionMap.get(beanName);
@@ -30,3 +51,4 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
     }
 
 }
+
