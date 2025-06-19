@@ -1,4 +1,4 @@
-package cn.lyp.springframework.test.bean;
+package cn.lyp.springframework.test.test1.bean;
 
 /**
  * @Author: 53256

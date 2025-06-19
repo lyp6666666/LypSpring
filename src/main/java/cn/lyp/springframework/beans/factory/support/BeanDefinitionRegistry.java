@@ -6,7 +6,7 @@ import cn.lyp.springframework.beans.factory.config.BeanDefinition;
 /**
  * @Author: 53256
  * @Date: 2025/4/30 11:34
- * @Description:
+ * @Description: 用于注册和管理 Bean 定义（BeanDefinition）的注册表接口。
  */
 public interface BeanDefinitionRegistry {
 

@@ -1,8 +1,8 @@
-package cn.lyp.springframework.test;
+package cn.lyp.springframework.test.test1;
 
 import cn.lyp.springframework.beans.factory.config.BeanDefinition;
 import cn.lyp.springframework.beans.factory.support.DefaultListableBeanFactory;
-import cn.lyp.springframework.test.bean.UserService;
+import cn.lyp.springframework.test.test1.bean.UserService;
 import net.sf.cglib.proxy.Enhancer;
 import net.sf.cglib.proxy.NoOp;
 import org.junit.Test;

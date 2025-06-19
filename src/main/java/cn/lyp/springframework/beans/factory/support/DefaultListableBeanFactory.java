@@ -10,7 +10,7 @@ import java.util.Map;
 /**
  * @Author: 53256
  * @Date: 2025/4/30 11:34
- * @Description:
+ * @Description: 可注册、可配置、可实例化 Bean 的 IoC 容器实现
  */
 public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFactory implements BeanDefinitionRegistry, ConfigurableListableBeanFactory {
 
