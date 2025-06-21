@@ -1,8 +1,12 @@
 package cn.lyp.springframework.beans.factory.support;
 
 import cn.lyp.springframework.beans.BeansException;
-import cn.lyp.springframework.beans.factory.BeanFactory;
 import cn.lyp.springframework.beans.factory.config.BeanDefinition;
+import cn.lyp.springframework.beans.factory.config.BeanPostProcessor;
+import cn.lyp.springframework.beans.factory.config.ConfigurableBeanFactory;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -11,7 +15,10 @@ import cn.lyp.springframework.beans.factory.config.BeanDefinition;
  * @Description: 统一模板逻辑（模板方法模式）----核心模板调度者
  * 继承了DefaultSingletonBeanRegistry，也就具备了单例注册类方法。
  */
-public abstract class AbstractBeanFactory extends DefaultSingletonBeanRegistry implements BeanFactory {
+public abstract class AbstractBeanFactory extends DefaultSingletonBeanRegistry implements ConfigurableBeanFactory {
+
+    /** BeanPostProcessors to apply in createBean */
+    private final List<BeanPostProcessor> beanPostProcessors = new ArrayList<BeanPostProcessor>();
 
     @Override
     public Object getBean(String name) throws BeansException{
@@ -48,5 +55,18 @@ public abstract class AbstractBeanFactory extends DefaultSingletonBeanRegistry i
     protected abstract Object createBean(String beanBean , BeanDefinition beanDefinition,Object[] args) throws BeansException;
 
 
+    @Override
+    public void addBeanPostProcessor(BeanPostProcessor beanPostProcessor){
+        this.beanPostProcessors.remove(beanPostProcessor);
+        this.beanPostProcessors.add(beanPostProcessor);
+    }
 
+
+    /**
+     * Return the list of BeanPostProcessors that will get applied
+     * to beans created with this factory.
+     */
+    public List<BeanPostProcessor> getBeanPostProcessors() {
+        return this.beanPostProcessors;
+    }
 }

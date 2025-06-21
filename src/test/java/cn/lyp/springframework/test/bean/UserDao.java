@@ -1,13 +1,8 @@
-package cn.lyp.springframework.test.testResourceLoad.bean;
+package cn.lyp.springframework.test.bean;
 
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * @Author: LypCoding
- * @Date: 2025/6/19 14:22
- * @Description:
- */
 public class UserDao {
 
     private static Map<String, String> hashMap = new HashMap<>();
@@ -23,4 +18,3 @@ public class UserDao {
     }
 
 }
-

@@ -4,6 +4,7 @@ import cn.lyp.springframework.beans.BeansException;
 import cn.lyp.springframework.core.io.Resource;
 import cn.lyp.springframework.core.io.ResourceLoader;
 
+import java.beans.Beans;
 import java.io.IOException;
 
 /**
@@ -22,5 +23,7 @@ public interface BeanDefinitionReader {
     void loadBeanDefinitions(Resource... resources) throws BeansException;
 
     void loadBeanDefinitions(String location) throws BeansException;
+
+    void loadBeanDefinitions(String... locations) throws BeansException;
 
 }

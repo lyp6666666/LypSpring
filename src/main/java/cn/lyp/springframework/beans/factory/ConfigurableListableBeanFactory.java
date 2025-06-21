@@ -14,4 +14,6 @@ import cn.lyp.springframework.beans.factory.config.ConfigurableBeanFactory;
 public interface ConfigurableListableBeanFactory extends ListableBeanFactory, AutowireCapableBeanFactory, ConfigurableBeanFactory {
 
     BeanDefinition getBeanDefinition(String beanName) throws BeansException;
+
+    void preInstantiateSingletons() throws BeansException;
 }
