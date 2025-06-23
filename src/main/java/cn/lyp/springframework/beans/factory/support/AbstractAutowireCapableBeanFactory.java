@@ -12,7 +12,7 @@ import cn.lyp.springframework.beans.factory.config.BeanDefinition;
 import cn.lyp.springframework.beans.factory.config.BeanPostProcessor;
 import cn.lyp.springframework.beans.factory.config.BeanReference;
 
-import java.io.ObjectStreamClass;
+
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
 
@@ -96,6 +96,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
         } catch (Exception e) {
             throw new BeansException("Error setting property values：" + beanName);
         }
+
     }
 
 
