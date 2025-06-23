@@ -4,6 +4,7 @@ import cn.lyp.springframework.beans.BeansException;
 import cn.lyp.springframework.beans.factory.config.BeanDefinition;
 import cn.lyp.springframework.beans.factory.config.BeanPostProcessor;
 import cn.lyp.springframework.beans.factory.config.ConfigurableBeanFactory;
+import cn.lyp.springframework.util.ClassUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,6 +17,10 @@ import java.util.List;
  * 继承了DefaultSingletonBeanRegistry，也就具备了单例注册类方法。
  */
 public abstract class AbstractBeanFactory extends DefaultSingletonBeanRegistry implements ConfigurableBeanFactory {
+
+
+    /** ClassLoader to resolve bean class names with, if necessary */
+    private ClassLoader beanClassLoader = ClassUtils.getDefaultClassLoader();
 
     /** BeanPostProcessors to apply in createBean */
     private final List<BeanPostProcessor> beanPostProcessors = new ArrayList<BeanPostProcessor>();
@@ -68,5 +73,10 @@ public abstract class AbstractBeanFactory extends DefaultSingletonBeanRegistry i
      */
     public List<BeanPostProcessor> getBeanPostProcessors() {
         return this.beanPostProcessors;
+    }
+
+
+    public ClassLoader getBeanClassLoader(){
+        return this.beanClassLoader;
     }
 }

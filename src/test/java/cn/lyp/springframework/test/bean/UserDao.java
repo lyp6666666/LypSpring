@@ -1,9 +1,10 @@
 package cn.lyp.springframework.test.bean;
 
+
 import java.util.HashMap;
 import java.util.Map;
 
-public class UserDao {
+public class UserDao{
 
     private static Map<String, String> hashMap = new HashMap<>();
 
